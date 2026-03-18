@@ -1,0 +1,931 @@
+/* =============================================
+   JEMI v1 — Design Tokens
+   ============================================= */
+
+:root {
+
+  /* ----- Spacing ----- */
+  --space-0:   0px;
+  --space-2:   2px;
+  --space-4:   4px;
+  --space-6:   6px;
+  --space-8:   8px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-20:  20px;
+  --space-24:  24px;
+  --space-28:  28px;
+  --space-32:  32px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-64:  64px;
+  --space-80:  80px;
+  --space-96:  96px;
+  --space-128: 128px;
+
+  /* ----- Font Family ----- */
+  --font-family-base:    'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-display: 'Cormorant', Georgia, 'Times New Roman', serif;
+
+  /* ----- Font Weight ----- */
+  --fw-b: 700;
+  --fw-s: 600;
+  --fw-m: 500;
+  --fw-r: 400;
+
+  /* ----- Display ----- */
+  --type-display1-size:   clamp(60px, 5vw, 96px);
+  --type-display1-line:   1.2;
+  --type-display1-letter: -0.02em;
+
+  --type-display2-size:   clamp(48px, 4vw, 72px);
+  --type-display2-line:   1.25;
+  --type-display2-letter: -0.02em;
+
+  --type-display3-size:   clamp(40px, 3.5vw, 60px);
+  --type-display3-line:   1.25;
+  --type-display3-letter: -0.01em;
+
+  --type-display4-size:   clamp(36px, 3vw, 48px);
+  --type-display4-line:   1.3;
+  --type-display4-letter: -0.01em;
+
+  /* ----- Heading ----- */
+  --type-h1-size:   clamp(32px, 2.2vw, 36px);
+  --type-h1-line:   1.35;
+  --type-h1-letter: -0.01em;
+
+  --type-h2-size:   clamp(28px, 2vw, 32px);
+  --type-h2-line:   1.4;
+  --type-h2-letter: -0.005em;
+
+  --type-h3-size:   clamp(24px, 1.8vw, 28px);
+  --type-h3-line:   1.45;
+  --type-h3-letter: 0;
+
+  --type-h4-size:   clamp(22px, 1.5vw, 24px);
+  --type-h4-line:   1.45;
+  --type-h4-letter: 0;
+
+  /* ----- Fixed Scale ----- */
+  --type-h5-size:   20px;
+  --type-h5-line:   1.5;
+  --type-h5-letter: 0;
+
+  --type-subtitle-size:   18px;
+  --type-subtitle-line:   1.5;
+  --type-subtitle-letter: 0;
+
+  --type-body1-size:   16px;
+  --type-body1-line:   1.6;
+  --type-body1-letter: 0;
+
+  --type-body2-size:   14px;
+  --type-body2-line:   1.6;
+  --type-body2-letter: 0;
+
+  --type-body3-size:   13px;
+  --type-body3-line:   1.6;
+  --type-body3-letter: 0.01em;
+
+  --type-caption1-size:   12px;
+  --type-caption1-line:   1.4;
+  --type-caption1-letter: 0.02em;
+
+  --type-caption2-size:   11px;
+  --type-caption2-line:   1.35;
+  --type-caption2-letter: 0.02em;
+
+  --type-caption3-size:   10px;
+  --type-caption3-line:   1.3;
+  --type-caption3-letter: 0.02em;
+
+  /* ----- Breakpoint ----- */
+  --bp-tablet:  768px;
+  --bp-desktop: 1280px;
+
+  /* ----- Page Padding ----- */
+  --page-padding-inline: clamp(1rem, 2.5vw, 4rem);
+
+  /* ----- Grid Column ----- */
+  --grid-cols-mobile:  6;
+  --grid-cols-tablet:  12;
+  --grid-cols-desktop: 12;
+
+  /* ----- Grid Gap ----- */
+  --grid-gap-mobile:  0.5rem;
+  --grid-gap-tablet:  0.75rem;
+  --grid-gap-desktop: 1rem;
+
+  /* ----- Color / Beige (sample1) ----- */
+  --beige-50:  #FBF9F4;
+  --beige-100: #F4EFE5;
+  --beige-200: #E8DECD;
+  --beige-300: #D9C8AC;
+  --beige-400: #C6AE88;
+  --beige-500: #B29367;
+  --beige-600: #94774F;
+  --beige-700: #745C3E;
+  --beige-800: #54422D;
+  --beige-900: #362A1C;
+
+  /* ----- Color / Orange (sample2) ----- */
+  --orange-50:  #FFF3EC;
+  --orange-100: #FFE3D9;
+  --orange-200: #FFCDBB;
+  --orange-300: #FFAD91;
+  --orange-400: #FF6E3E;
+  --orange-500: #FF4F14;
+  --orange-600: #D94310;
+  --orange-700: #C74600;
+  --orange-800: #A83A00;
+  --orange-900: #7F2B00;
+
+  /* ----- Color / Sky (sample3) ----- */
+  --sky-50:  #FAFDFE;
+  --sky-100: #F5FBFD;
+  --sky-200: #ECF8FC;
+  --sky-300: #E2F4FA;
+  --sky-400: #D9F1F9;
+  --sky-500: #CFEDF7;
+  --sky-600: #ACDDEE;
+  --sky-700: #8ACEE5;
+  --sky-800: #67BEDB;
+  --sky-900: #229FC9;
+
+  /* ----- Color / Greyscale ----- */
+  --white:    #FDFCF9;
+  --grey-50:  #FAFAF9;
+  --grey-100: #F2F2F0;
+  --grey-200: #E6E6E3;
+  --grey-300: #D4D4CF;
+  --grey-400: #B8B8B2;
+  --grey-500: #9C9C95;
+  --grey-600: #7F7F78;
+  --grey-700: #62625C;
+  --grey-800: #464641;
+  --grey-900: #2C2C29;
+  --black:    #161513;
+
+  /* ----- Color / State ----- */
+  --color-hover:   rgba(178, 147, 103, 0.10);
+  --color-pressed: rgba(178, 147, 103, 0.20);
+
+  /* ----- Radius ----- */
+  --radius-0:    0px;
+  --radius-2:    2px;
+  --radius-4:    4px;
+  --radius-6:    6px;
+  --radius-8:    8px;
+  --radius-12:   12px;
+  --radius-16:   16px;
+  --radius-24:   24px;
+  --radius-32:   32px;
+  --radius-full: 9999px;
+}
+
+/* =============================================
+   Layout Grid
+   ============================================= */
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols-mobile), minmax(0, 1fr));
+  gap: var(--grid-gap-mobile);
+  padding-inline: var(--page-padding-inline);
+}
+
+@media (min-width: 768px) {
+  .layout-grid {
+    grid-template-columns: repeat(var(--grid-cols-tablet), minmax(0, 1fr));
+    gap: var(--grid-gap-tablet);
+  }
+}
+
+@media (min-width: 1280px) {
+  .layout-grid {
+    grid-template-columns: repeat(var(--grid-cols-desktop), minmax(0, 1fr));
+    gap: var(--grid-gap-desktop);
+  }
+}
+
+/* =============================================
+   Base Reset
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-family-base);
+  font-weight: var(--fw-r);
+  font-size: var(--type-body1-size);
+  line-height: var(--type-body1-line);
+  letter-spacing: var(--type-body1-letter);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: max(100vh, 600px); /* 뷰포트 높이 < 600px 이면 문서 최소 600px 확보 */
+  background-color: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+
+/* =============================================
+   HERO — 첫 진입 상태
+   ============================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100dvh;          /* 전체 화면 점유 */
+  min-height: 600px;       /* 뷰포트 높이 < 600px 이면 최소 높이 확보 */
+  overflow: hidden;
+  background-color: var(--white);
+}
+
+/* 태그라인 — 초기: 투명 / 텍스트 자체는 항상 선명 */
+.hero__tagline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-family-display);
+  font-size: 32px;
+  font-weight: var(--fw-m);
+  line-height: 1.6;
+  color: var(--beige-200);        /* state-1 시작 색상 */
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  will-change: opacity, color, top, transform, font-size;
+}
+
+/* state-1: 텍스트 등장 (glass 레이어가 블러 처리) — delay 800ms 후, 200ms ease-out */
+.hero__tagline.is-blur {
+  opacity: 1;
+  color: var(--beige-200);
+  transition:
+    opacity  200ms ease-out,
+    color    200ms ease-out;
+}
+
+/* state-2: glass 레이어가 페이드아웃되면서 텍스트 드러남 */
+.hero__tagline.is-sharp {
+  opacity: 1;
+  color: var(--beige-300);
+  transition: color 100ms ease-out;
+}
+
+/* state-3: 색상 진해짐 — 100ms ease-out */
+.hero__tagline.is-vivid {
+  opacity: 1;
+  color: var(--beige-500);
+  transition: color 100ms ease-out;
+}
+
+/* 글래스 레이어 — 텍스트 위 전체 커버, 초기: 불투명 */
+.hero__glass {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 1;
+  pointer-events: none; /* 장식 레이어 */
+  transition: opacity 100ms ease-out;
+  will-change: opacity;
+}
+
+/* glass 페이드아웃 */
+.hero__glass.is-hidden {
+  opacity: 0;
+}
+
+/* ── 메인 카드 — landing page-6, 6컬럼(50%) 중앙 배치 ── */
+.hero__card {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: max(280px, 60dvh);
+  border-radius: var(--radius-24, 24px);
+  background: var(--beige-50, #FBF9F4);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.hero__card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 탭 패널 — 기본 숨김, is-active만 표시 */
+.hero__card-panel {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__card-panel.is-active {
+  display: block;
+}
+
+/* ── Location 탭 패널 ── */
+.hero__card-panel[data-panel="location"] {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero__card-panel[data-panel="location"].is-active {
+  display: flex;
+}
+
+.loc-tag-row {
+  width: 100%;
+  padding: 20px 20px 0;
+  box-sizing: border-box;
+}
+
+.card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  background: #f4efe5;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+
+.card-tag__primary {
+  font-size: 16px;
+  font-weight: 400;
+  color: #94774f;
+}
+
+.card-tag__secondary {
+  font-size: 14px;
+  font-weight: 400;
+  color: #c6ae88;
+}
+
+.loc-map {
+  position: relative;
+  width: 320px;
+  height: 209px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.loc-map__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.loc-map__marker {
+  position: absolute;
+  left: 69px;
+  top: 88px;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255,227,217,0.32) 0%, rgba(255,243,236,0.32) 100%);
+  box-shadow:
+    0 2px 6px rgba(255,79,20,0.20),
+    0 1px 3px rgba(255,79,20,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loc-map__heart {
+  width: 14.853px;
+  height: 12px;
+  display: block;
+}
+
+.loc-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #54422d;
+  white-space: nowrap;
+}
+
+.loc-subtitle {
+  margin: 2px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #b29367;
+  white-space: nowrap;
+}
+
+/* 둥근 테두리 — 30px inset, r=28px, stroke: beige-50, 초기: 투명 */
+.hero__border {
+  position: absolute;
+  inset: 30px;
+  border: 1px solid var(--beige-50);
+  border-radius: 28px;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+/* ======================================================
+   HERO — active 상태 (landing page-5: 배경 이미지 등장)
+   After delay 800ms → Smart animate / Custom spring
+   Stiffness 100 / Damping 50 / Mass 2
+   전환 애니메이션은 JS springAnimate()가 전담
+   (CSS transition 없음 — 근사 없음)
+   ====================================================== */
+
+/* 태그라인: 위로 이동 + 20px + beige-50 — 전환은 JS springAnimate가 담당 */
+.hero__tagline.is-active {
+  top: 60px;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: var(--beige-50);
+  opacity: 1;
+}
+
+/* 둥근 테두리: 최종 상태 — 전환은 JS springAnimate가 담당 */
+.hero__border.is-active {
+  opacity: 1;
+}
+
+/* ── 슬라이드 이미지 컨테이너 (inset:20px, r:32px) — 초기: 투명 */
+.hero__slide {
+  position: absolute;
+  inset: 20px;
+  border-radius: 32px;
+  overflow: hidden;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.hero__slide.is-active {
+  opacity: 1;
+}
+
+/* 각 슬라이드 아이템
+   - 기본: 화면 아래 대기 (JS가 translateY로 초기화)
+   - .is-active: translateY(0), 정상 표시
+   - .is-passed: 제자리, 다음 슬라이드에 가려진 뒤 visibility:hidden (JS 처리)
+   ★ transform:translateY — layout reflow 없이 GPU Composite만 트리거 */
+.hero__slide-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 32px;
+  /* will-change는 JS가 애니메이션 직전에만 부여 — 7장 동시 GPU 레이어 방지 */
+}
+
+.hero__slide-item.is-passed {
+  pointer-events: none;
+}
+
+.hero__slide-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 32px;
+  pointer-events: none;
+}
+
+/* ── 메인 타이틀 wrap — 피그마 409:392 구조 그대로 */
+/* flex col items-center justify-center — logo-sample을 중앙에 배치 */
+/* overflow:hidden — 최종 이동 시 island가 컨테이너 밖으로 나가지 않게 클리핑 */
+.hero__title-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 596.612px;
+  height: 372.792px;
+  opacity: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity, width, height, left, top, transform;
+}
+
+.hero__title-wrap.is-active {
+  opacity: 1;
+}
+
+/* ── island wrapper: 위치·크기·opacity 제어 ──
+   blur은 각 Ellipse 요소가 개별 담당
+   opacity: 0 → 1 (is-opaque 클래스, JS spring으로 제어)
+*/
+.hero__ellipse1-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 596.612px;
+  height: 372.792px;
+  pointer-events: none;
+  overflow: visible;    /* SVG filter(drop-shadow 등)가 wrap 밖으로 나올 수 있어야 함 */
+  opacity: 0;
+}
+
+/* 1단계: 블러 상태로 등장 — opacity 0 → 0.8, JS spring으로 제어 */
+.hero__ellipse1-wrap.is-opaque {
+  opacity: 0.8;
+}
+
+/* is-sharp: Ellipse 1 blur 해제 트리거 (자식 선택자로 전달) */
+.hero__ellipse1-wrap.is-sharp {
+  /* opacity는 그대로, blur만 Ellipse 1에서 처리 */
+}
+
+/* ── Ellipse 1 backdrop blur — 피그마 Glass Frost 효과
+   hero 직속 자식으로 배치 — opacity 격리 부모 밖이어야 backdrop-filter가 실제 배경을 블러함
+   JS springAnimate로 islandWrap과 동일하게 opacity 0 → 0.8 제어 */
+.hero__ellipse1-blur {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 407.494px;
+  height: 254.622px;
+  pointer-events: none;
+  opacity: 0;
+  clip-path: path("M369.94 84.81C399.14 104.47 429.88 161.10 329.72 178.27C283.93 186.10 286.01 242.22 206.43 242.22C156.01 242.22 123.45 195.55 93.57 182.46C60.53 168.01 20.04 158.42 10.24 115.97C2.44 82.10 23.34 40.02 57.83 23.29C105.88 0 150.85 45.16 198.41 45.16C248.57 45.16 238.02 0.45 291.29 4.99C340.93 9.22 346.94 69.50 369.94 84.81Z");
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Ellipse 1 — 피그마 371:973
+   고정 크기: 407.494×254.622px (island wrap 중앙 배치)
+   drop-shadow: CSS로 직접 적용 (SVG 필터 제거)
+   CSS blur: 초기 10px → 0px (is-sharp 시, bezier 0,0,0.3,0.4 / 500ms) */
+.hero__ellipse1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 407.494px;
+  height: 254.622px;
+  pointer-events: none;
+  filter: blur(10px) drop-shadow(0 4px 8px rgba(0,0,0,0.20)) drop-shadow(0 4px 4px rgba(0,0,0,0.04));
+  transition: filter 500ms cubic-bezier(0, 0, 0.3, 0.4);
+}
+
+/* blur 해제 */
+.hero__ellipse1-wrap.is-sharp .hero__ellipse1 {
+  filter: blur(0px) drop-shadow(0 4px 8px rgba(0,0,0,0.20)) drop-shadow(0 4px 4px rgba(0,0,0,0.04));
+}
+
+/* Ellipse 4 — 초기: 투명, JS springAnimate로 등장 (ellipse3 완료 직후, 제일 아래 레이어) */
+.hero__ellipse4 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 596.612px;
+  height: 372.792px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -3;
+}
+.hero__ellipse4.is-visible { opacity: 0.4; }
+
+/* Ellipse 3 — 초기: 투명, JS springAnimate로 등장 (ellipse2 완료 직후) */
+.hero__ellipse3 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 493.068px;
+  height: 308.092px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -2;
+}
+.hero__ellipse3.is-visible { opacity: 0.6; }
+
+/* Ellipse 2 — 초기: 투명, JS springAnimate로 등장 (S:80 D:20 M:1) */
+.hero__ellipse2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 448.243px;
+  height: 280.084px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1; /* ellipse1-wrap 뒤 */
+}
+.hero__ellipse2.is-visible {
+  opacity: 0.7;
+}
+
+/* Ellipse 1 Sharp — 초기: 투명 (JS spring으로 opacity 0→1) */
+/* 피그마 371:896 — 단순 drop-shadow만, inner-shadow/blur 없음 */
+.hero__ellipse1b {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 407.494px;
+  height: 254.622px;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.04));
+  opacity: 0; /* JS springAnimate가 제어 */
+}
+.hero__ellipse1b.is-visible {
+  opacity: 1;
+}
+
+/* (하위 호환) 구 .hero__island — 더 이상 사용 안 함 */
+.hero__island.is-visible {
+  opacity: 1;
+}
+
+/* .logo-sample — 개별 글자 SVG 컨테이너 */
+/* position: absolute (title-wrap 기준), 피그마 실측 위치 */
+.hero__logo-sample {
+  position: absolute;
+  left: 100px;
+  top: 92px;
+  width: 356.898px;
+  height: 163.924px;
+  opacity: 0;
+  z-index: 1; /* island(absolute) 위로 */
+  pointer-events: none;
+  filter: url(#logo-outline); /* 그룹 외곽선 — 글자 간 내부 선 없음 */
+}
+
+/* 로고 텍스트 등장 완료 상태 */
+.hero__logo-sample.is-visible {
+  opacity: 1;
+}
+
+/* 개별 글자 래퍼 — 피그마 절대 좌표 기반 */
+.lc {
+  position: absolute;
+  overflow: visible;
+}
+
+.lc img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 각 글자 위치 & 크기 (피그마 절대 좌표 → 컨테이너 기준 상대좌표) */
+#lc-J    { left:   0px;       top:   0px;       width: 174.690px; height: 152.170px; }
+#lc-j    { left:  86.294px;   top:  43.033px;   width:  90.372px; height:  93.137px; }
+#lc-e    { left: 107.025px;   top:  74.209px;   width:  24.391px; height:  27.448px; }
+#lc-u    { left: 170.432px;   top:  70.965px;   width:  33.403px; height:  27.583px; }
+#lc-M    { left: 142.184px;   top: 112.305px;   width:  66.981px; height:  51.619px; }
+#lc-i1   { left: 201.546px;   top: 105.018px;   width:  42.438px; height:  58.742px; }
+#lc-s1   { left: 233.344px;   top: 133.598px;   width:  17.602px; height:  27.448px; }
+#lc-s2   { left: 255.671px;   top: 133.598px;   width:  17.602px; height:  27.448px; }
+#lc-i2   { left: 276.578px;   top: 133.645px;   width:  15.764px; height:  26.658px; }
+#lc-o    { left: 293.053px;   top: 133.395px;   width:  28.662px; height:  27.785px; }
+#lc-n    { left: 322.774px;   top: 133.462px;   width:  34.124px; height:  26.841px; }
+#lc-2028 { left: 256.939px;   top:  98.548px;   width:  64.775px; height:  19.580px; }
+
+
+/* =============================================
+   CHATBOT — 우측 고정, 세로 중앙
+   ============================================= */
+
+.chatbot-wrap {
+  position: fixed;
+  opacity: 0; /* 초기: 투명 — JS springAnimate로 카드와 동시 등장 */
+  left: 87.5%; /* 우측 3컬럼(75%~100%) 중앙 */
+  top: clamp(20px, 50%, calc(100vh - 150px)); /* 하단 nav와 겹치지 않도록 cap */
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+}
+.chatbot-wrap.is-active {
+  opacity: 1;
+}
+
+/* 툴팁 말풍선 */
+.chatbot__tooltip {
+  position: relative;
+  background: #E8DECD;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+  padding: 6px 10px;
+  font-family: var(--font-family), sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #54422D;
+  letter-spacing: 0.13px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* 말풍선 꼬리 — 오른쪽에 삼각형 */
+.chatbot__tail {
+  position: absolute;
+  right: -4px;
+  top: calc(50% + 0.5px);
+  transform: translateY(-50%);
+  width: 8px;
+  height: 9.238px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot__tail img {
+  width: 9.238px;
+  height: 8px;
+  transform: rotate(90deg);
+  display: block;
+}
+
+/* 챗봇 버튼 */
+.chatbot__btn {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: #FBF9F4;
+  border-radius: 9999px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.chatbot__btn img {
+  width: 20px;
+  height: 17.71px;
+  display: block;
+}
+
+/* =============================================
+   NAV — 하단 고정, 초기: 화면 아래 숨김, JS로 슬라이드업
+   ============================================= */
+
+/* 초기: 아래로 숨김 — JS springAnimate로 슬라이드업 */
+.nav {
+  position: fixed;
+  bottom: 42px;
+  left: 40px;
+  right: 40px;
+  z-index: 100;
+  overflow: hidden; /* border-radius가 자식에 클리핑되도록 */
+
+  /* Frosted glass */
+  background: rgba(253, 252, 249, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+
+  /* 초기: 화면 아래 숨김 */
+  transform: translateY(calc(100% + 42px));
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* 최종 상태 — JS가 인라인 style 제거 후 이 클래스로 고정 */
+.nav.is-active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nav__list {
+  display: flex;
+  align-items: stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* li가 균등 분할 */
+.nav__list li {
+  flex: 1;
+}
+
+/* ── 메뉴 아이템 ── */
+/* 피그마: flex row, justify-between, px-32 py-20 */
+.nav__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 66px;
+  padding: 20px 32px;
+  text-decoration: none;
+  cursor: pointer;
+
+  /* Hover ease-out 300ms (피그마 동일 커브) */
+  transition: background-color 300ms ease-out;
+}
+
+/* 한글 레이블 — Default: beige-500 / 14px / Pretendard Medium */
+.nav__link-ko {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--fw-m);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--beige-500);
+  transition: color 300ms ease-out;
+}
+
+/* 영문 레이블 — Default: beige-400 / 14px / Cormorant Medium */
+.nav__link-en {
+  font-family: var(--font-family-display);
+  font-style: normal;
+  font-size: 14px;
+  font-weight: var(--fw-m);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--beige-400);
+  transition: color 300ms ease-out;
+}
+
+/* Hover 상태 — is-active인 경우 적용 안 함 */
+.nav__link:hover:not(.is-active) {
+  background-color: var(--beige-100);
+}
+
+.nav__link:hover:not(.is-active) .nav__link-ko {
+  color: var(--beige-600);
+}
+
+.nav__link:hover:not(.is-active) .nav__link-en {
+  color: var(--beige-500);
+}
+
+/* Active(선택됨) 상태 — JS springAnimate 완료 후 클래스 부여 */
+.nav__link.is-active {
+  background-color: var(--beige-50);
+}
+
+.nav__link.is-active .nav__link-ko {
+  font-size: 16px;
+  color: var(--beige-700);
+}
+
+.nav__link.is-active .nav__link-en {
+  color: var(--beige-600);
+}
+
+
+/* =============================================
+   RESPONSIVE — 낮은 뷰포트 높이 대응 (스마트폰 가로 모드 등)
+   ============================================= */
+
+/* 뷰포트 높이 599px 이하:
+   fixed 요소를 absolute로 전환 → min-height 600px인 .hero 기준으로 배치
+   → 스크롤 시 자연스럽게 따라감 (겹침 방지) */
+@media (max-height: 599px) {
+  .chatbot-wrap {
+    position: absolute;
+  }
+  .nav {
+    position: absolute;
+  }
+}
+
+
+/* =============================================
+   MAIN SECTIONS — 기본 섹션 구조
+   ============================================= */
+
+.section {
+  padding-block: var(--space-80);
+}
+
+.section--partners {
+  background-color: var(--beige-50);
+}

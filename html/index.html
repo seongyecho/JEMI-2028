@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JEMI 2028</title>
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SVG 필터 정의 -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- 로고 그룹 외곽선 (feMorphology dilate) — 획 색상 애니메이션 대상: #logo-flood -->
+      <filter id="logo-outline" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+        <feMorphology in="SourceAlpha" operator="dilate" radius="1" result="dilated"/>
+        <feFlood id="logo-flood" flood-color="#362A1C" result="strokeColor"/>
+        <feComposite in="strokeColor" in2="dilated" operator="in" result="stroke"/>
+        <feMerge>
+          <feMergeNode in="stroke"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <!-- 글자 fill 색상 변환: 크림(#FBF9F4) → 오렌지(#FF4F14) — 2028 제외 -->
+      <filter id="letter-to-orange" color-interpolation-filters="sRGB">
+        <feColorMatrix id="letter-color-matrix" type="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- =============================================
+       HERO SECTION — 첫 진입 시 전체 화면 점유
+       ============================================= -->
+  <section class="hero" id="hero">
+
+    <!-- ① 슬라이드 이미지 7장 — 초기: 투명, JS로 페이드인 -->
+    <div class="hero__slide" aria-hidden="true">
+      <div class="hero__slide-item is-active">
+        <img src="assets/01 유채꽃.webp" alt="유채꽃" draggable="false">
+      </div>
+      <div class="hero__slide-item">
+        <img src="assets/02 파도.webp" alt="파도" draggable="false">
+      </div>
+      <div class="hero__slide-item">
+        <img src="assets/03 야쟈수.webp" alt="야자수" draggable="false">
+      </div>
+      <div class="hero__slide-item">
+        <img src="assets/04 한라산.webp" alt="한라산" draggable="false">
+      </div>
+      <div class="hero__slide-item">
+        <img src="assets/05 밤.webp" alt="밤" draggable="false">
+      </div>
+      <div class="hero__slide-item">
+        <img src="assets/06 숲.webp" alt="숲" draggable="false">
+      </div>
+      <div class="hero__slide-item">
+        <img src="assets/07 바다.webp" alt="바다" draggable="false">
+      </div>
+    </div>
+
+    <!-- ② 둥근 테두리 — 슬라이드를 감싸는 외곽선, JS로 페이드인 -->
+    <div class="hero__border" aria-hidden="true"></div>
+
+    <!-- Ellipse 1 backdrop blur — 슬라이드/테두리 뒤에 위치해야 backdrop-filter가 슬라이드를 블러함
+         hero 직속 자식 (opacity 격리 밖) + 슬라이드 다음 DOM 순서 (슬라이드가 backdrop으로 보임) -->
+    <div class="hero__ellipse1-blur" id="ellipse1Blur"></div>
+
+    <!-- ③ 메인 타이틀 (island 블롭 + JEMI 로고) — JS로 페이드인 -->
+    <!-- island: hero__ellipse1-wrap이 위치/크기/opacity/filter 담당 -->
+    <!-- 피그마 409:392 구조 그대로: flex col items-center justify-center -->
+    <div class="hero__title-wrap" aria-hidden="true">
+      <!-- Ellipse 4 — ellipse3 완료 직후 등장 (제일 아래 레이어) -->
+      <img class="hero__ellipse4" id="ellipse4"
+           src="assets/ellipse4.svg" alt="" draggable="false">
+      <!-- Ellipse 3 — ellipse2 완료 직후 등장 -->
+      <img class="hero__ellipse3" id="ellipse3"
+           src="assets/ellipse3.svg" alt="" draggable="false">
+      <!-- Ellipse 2 — ellipse1→1B 완료 후 등장 -->
+      <img class="hero__ellipse2" id="ellipse2"
+           src="assets/ellipse2.svg" alt="" draggable="false">
+      <!-- island wrapper: opacity/filter/blur 제어 담당 -->
+      <!-- 피그마 371:1069 glassmorphic blob -->
+      <div class="hero__ellipse1-wrap">
+        <!-- Ellipse 1 — 블러 상태 (blur 10px→0, 600ms bezier) -->
+        <img class="hero__ellipse1" id="ellipse1"
+             src="assets/ellipse1.svg" alt="" draggable="false">
+        <!-- Ellipse 1 Sharp — 블러 해제 후 스타일 변화 (After delay 200ms, Spring S:80 D:20 M:1) -->
+        <img class="hero__ellipse1b" id="ellipse1B"
+             src="assets/ellipse1-sharp.svg" alt="" draggable="false">
+      </div>
+      <!-- .logo-sample: 개별 글자 SVG 컨테이너 (이동 애니메이션용) -->
+      <div class="hero__logo-sample" id="logoSample" aria-hidden="true">
+        <div class="lc" id="lc-J">   <img src="assets/char-J.svg"    alt="" draggable="false"></div>
+        <div class="lc" id="lc-j">   <img src="assets/char-j2.svg"   alt="" draggable="false"></div>
+        <div class="lc" id="lc-e">   <img src="assets/char-e.svg"    alt="" draggable="false"></div>
+        <div class="lc" id="lc-u">   <img src="assets/char-u.svg"    alt="" draggable="false"></div>
+        <div class="lc" id="lc-M">   <img src="assets/char-M.svg"    alt="" draggable="false"></div>
+        <div class="lc" id="lc-i1">  <img src="assets/char-i.svg"    alt="" draggable="false"></div>
+        <div class="lc" id="lc-s1">  <img src="assets/char-v4.svg"   alt="" draggable="false"></div>
+        <div class="lc" id="lc-s2">  <img src="assets/char-v3.svg"   alt="" draggable="false"></div>
+        <div class="lc" id="lc-i2">  <img src="assets/char-v5.svg"   alt="" draggable="false"></div>
+        <div class="lc" id="lc-o">   <img src="assets/char-v2.svg"   alt="" draggable="false"></div>
+        <div class="lc" id="lc-n">   <img src="assets/char-v1.svg"   alt="" draggable="false"></div>
+        <div class="lc" id="lc-2028"><img src="assets/char-2028.svg"  alt="" draggable="false"></div>
+      </div>
+    </div>
+
+    <!-- ④ 히어로 태그라인 — JS로 페이드인 후 위로 이동 -->
+    <p class="hero__tagline" aria-hidden="true">One Vision, One in Jesus</p>
+
+    <!-- ⑤ 글래스 레이어 — 텍스트 블러, JS로 페이드아웃 -->
+    <div class="hero__glass" aria-hidden="true"></div>
+
+    <!-- ⑥ 메인 카드 — landing page-6 등장, 6컬럼 중앙 -->
+    <!-- 탭 패널: nav 클릭 시 교체, 기본값 = JEMI 소개(about) -->
+    <div class="hero__card" id="heroCard">
+      <div class="hero__card-panel is-active" data-panel="about"></div>
+      <div class="hero__card-panel" data-panel="schedule"></div>
+      <div class="hero__card-panel" data-panel="preregister"></div>
+      <div class="hero__card-panel" data-panel="location">
+        <!-- 태그 -->
+        <div class="loc-tag-row">
+          <div class="card-tag">
+            <span class="card-tag__primary">예정</span>
+            <span class="card-tag__secondary">TBC</span>
+          </div>
+        </div>
+        <!-- 지도 영역 -->
+        <div class="loc-map">
+          <img src="assets/jeju-map.svg" alt="제주도 지도" class="loc-map__img" draggable="false">
+          <div class="loc-map__marker">
+            <img src="assets/icon-heart-pin.svg" alt="" class="loc-map__heart" draggable="false">
+          </div>
+        </div>
+        <!-- 텍스트 -->
+        <p class="loc-title">새별오름</p>
+        <p class="loc-subtitle">Saebyeol Oreum, Jeju</p>
+      </div>
+      <div class="hero__card-panel" data-panel="news"></div>
+    </div>
+
+  </section>
+
+
+  <!-- =============================================
+       NAV — 히어로 애니메이션 이후 하단에서 슬라이드업
+       ============================================= -->
+  <nav class="nav" id="nav" aria-label="메인 내비게이션">
+    <ul class="nav__list">
+      <li><a href="#" class="nav__link is-active"><span class="nav__link-ko">JEMI 소개</span><em class="nav__link-en">about JEMI</em></a></li>
+      <li><a href="#" class="nav__link"><span class="nav__link-ko">일정</span><em class="nav__link-en">Schedule</em></a></li>
+      <li><a href="#" class="nav__link"><span class="nav__link-ko">사전 알림 신청</span><em class="nav__link-en">Pre-Register</em></a></li>
+      <li><a href="#" class="nav__link"><span class="nav__link-ko">장소</span><em class="nav__link-en">Location</em></a></li>
+      <li><a href="#" class="nav__link"><span class="nav__link-ko">소식</span><em class="nav__link-en">News</em></a></li>
+    </ul>
+  </nav>
+
+
+
+
+  <!-- =============================================
+       CHATBOT — 우측 고정, 세로 중앙
+       ============================================= -->
+  <div class="chatbot-wrap" id="chatbotWrap">
+    <div class="chatbot__tooltip">
+      AI에게 물어보세요
+      <span class="chatbot__tail">
+        <img src="assets/icon-tooltip-tail.svg" alt="" draggable="false">
+      </span>
+    </div>
+    <a class="chatbot__btn" href="https://pf.kakao.com/_ezuxhX" target="_blank" rel="noopener noreferrer" aria-label="AI 챗봇 열기">
+      <img src="assets/icon-chatbot.svg" alt="" draggable="false">
+    </a>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
