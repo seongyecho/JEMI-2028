@@ -601,8 +601,12 @@ body {
   position: absolute;
   left: 21.56%;
   top: 32.5%; /* 피그마: 68/209 (pt-20 제외) */
-  width: 24px;
-  height: 24px;
+
+  /* 마커 크기 — 원·하트 동시 스케일 */
+  --marker-size: clamp(24px, 3vw, 36px);
+  width: var(--marker-size);
+  height: var(--marker-size);
+
   border-radius: 9999px;
   background: radial-gradient(circle, rgba(255,227,217,0.32) 0%, rgba(255,243,236,0.32) 100%);
   box-shadow:
@@ -614,8 +618,9 @@ body {
 }
 
 .loc-map__heart {
-  width: 14.853px;
-  height: 12px;
+  /* 원본 비율 고정: 14.853/24 = 61.9% / 12/24 = 50% */
+  width: calc(var(--marker-size) * 0.619);
+  height: calc(var(--marker-size) * 0.5);
   display: block;
 }
 
