@@ -1591,6 +1591,16 @@ body {
     display: block;
   }
 
+  /* 챗봇 — 모바일: nav 위 우측 하단 고정
+     nav: bottom 42px + height 66px + gap 16px = 124px */
+  .chatbot-wrap {
+    left: auto;
+    right: 16px;
+    top: auto;
+    bottom: 124px;
+    transform: none;
+  }
+
   /* 아이콘 상태 제어 */
   .nav__icon--default,
   .nav__icon--hover,
