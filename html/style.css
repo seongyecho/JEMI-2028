@@ -1244,7 +1244,7 @@ body {
   opacity: 0;
   z-index: -3;
 }
-.hero__ellipse4.is-visible { opacity: 0.4; }
+.hero__ellipse4.is-visible { opacity: 0.3; }
 
 /* Ellipse 3 — 초기: 투명, JS springAnimate로 등장 (ellipse2 완료 직후) */
 .hero__ellipse3 {
