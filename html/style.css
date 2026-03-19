@@ -485,7 +485,7 @@ body {
   right: 0;
   bottom: 0;
   z-index: 1;                            /* img transform 스택 컨텍스트보다 위로 */
-  background: rgba(244, 239, 229, 0.95); /* beige-100 88% — 사진이 살짝 비침 */
+  background: rgba(251, 249, 244, 0.95); /* beige-50 — 카드와 동일한 색 */
   padding: clamp(10px, 1.5vw, 20px) clamp(4px, 1.5vw, 24px); /* 상하/좌우 패딩 반응형 */
   box-sizing: border-box;
   overflow-y: auto;                      /* 텍스트 넘치면 스크롤 */
@@ -515,7 +515,7 @@ body {
 /* 오버레이 텍스트 — Pretendard Medium, 반응형 16~20px, beige-800 */
 .about-photo__text {
   font-family: var(--font-family-base);
-  font-size: clamp(13px, 1.3vw, 20px); /* 소: 13px, 대: 20px */
+  font-size: clamp(13px, 1.3vw, 24px); /* 소: 13px, 대: 24px */
   font-weight: var(--fw-m);             /* 500 */
   line-height: 1.5;
   color: var(--beige-800);
