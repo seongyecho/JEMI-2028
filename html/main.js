@@ -527,7 +527,7 @@ function lerpColor(fromHex, toHex) {
             slideIdx    = nextIdx;
             isAnimating = false;
             if (slideIdx < slideItems.length - 1) {
-              slideTimer = setTimeout(advanceSlide, 1200);
+              slideTimer = setTimeout(advanceSlide, 600);
             }
           },
         });
@@ -540,7 +540,7 @@ function lerpColor(fromHex, toHex) {
         onComplete: () => {
           slide.style.opacity = '';
           slide.classList.add('is-active');
-          slideTimer = setTimeout(advanceSlide, 1200);
+          slideTimer = setTimeout(advanceSlide, 600);
         },
       });
     }
