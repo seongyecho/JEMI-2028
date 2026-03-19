@@ -1567,10 +1567,10 @@ body {
 
 /* 모바일: 아이콘만 표시, 텍스트 숨김 */
 @media (max-width: 767px) {
-  /* 카드 — hero__border inset(30px)과 맞춤, 선 안쪽 full width */
+  /* 카드 — 슬라이드↔외곽선 gap(10px) 동일하게: border inset(30px) + 10px = 40px */
   .hero__card {
-    left: 30px;
-    right: 30px;
+    left: 40px;
+    right: 40px;
     width: auto;
   }
 
