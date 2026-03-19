@@ -1141,9 +1141,34 @@ function lerpColor(fromHex, toHex) {
       const idx        = Array.from(navLinks).indexOf(link);
       const panelName  = panels[idx];
       if (panelName) {
-        document.querySelectorAll('.hero__card-panel').forEach(p => p.classList.remove('is-active'));
-        const target = document.querySelector(`.hero__card-panel[data-panel="${panelName}"]`);
-        if (target) target.classList.add('is-active');
+        const current = document.querySelector('.hero__card-panel.is-active');
+        const target  = document.querySelector(`.hero__card-panel[data-panel="${panelName}"]`);
+        if (!target || target === current) return;
+
+        function switchPanel() {
+          document.querySelectorAll('.hero__card-panel').forEach(function (p) {
+            p.classList.remove('is-active');
+            p.style.transition = '';
+            p.style.opacity    = '';
+          });
+          target.style.opacity   = '0';
+          target.classList.add('is-active');
+          void target.offsetWidth; /* reflow */
+          target.style.transition = 'opacity 150ms ease-in';
+          target.style.opacity    = '1';
+          setTimeout(function () {
+            target.style.transition = '';
+            target.style.opacity    = '';
+          }, 150);
+        }
+
+        if (current) {
+          current.style.transition = 'opacity 150ms ease-out';
+          current.style.opacity    = '0';
+          setTimeout(switchPanel, 150);
+        } else {
+          switchPanel();
+        }
       }
     });
   });
