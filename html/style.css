@@ -469,7 +469,8 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: filter 0.3s ease;
+  transform: scale(1.05); /* 가장자리 블러 번짐 방지용 — 항상 적용 */
+  transition: filter 0.3s ease; /* transform은 transition 없음 */
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
@@ -482,8 +483,9 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(244, 239, 229, 0.88); /* beige-100 88% — 사진이 살짝 비침 */
-  padding: clamp(10px, 1.5vw, 16px) clamp(4px, 1.5vw, 20px); /* 상하/좌우 패딩 반응형 */
+  z-index: 1;                            /* img transform 스택 컨텍스트보다 위로 */
+  background: rgba(244, 239, 229, 0.95); /* beige-100 88% — 사진이 살짝 비침 */
+  padding: clamp(10px, 1.5vw, 20px) clamp(4px, 1.5vw, 24px); /* 상하/좌우 패딩 반응형 */
   box-sizing: border-box;
   overflow-y: auto;                      /* 텍스트 넘치면 스크롤 */
   -ms-overflow-style: none;
@@ -502,8 +504,8 @@ body {
   opacity: 1;
 }
 
-/* 다른 사진 호버 시 비호버 사진에 블러 */
-.about-photos:hover .about-photo:not(:hover) .about-photo__img {
+/* 호버한 사진에 블러 */
+.about-photos:hover .about-photo:hover .about-photo__img {
   filter: blur(8px);
 }
 
