@@ -1307,3 +1307,17 @@ function lerpColor(fromHex, toHex) {
   scrollArea.addEventListener('scroll', onScroll, { passive: true });
 
 })();
+
+/* =============================================
+   ABOUT 사진 오버레이 — 호버 이탈 시 스크롤 초기화
+   ============================================= */
+(function () {
+  'use strict';
+  document.querySelectorAll('.about-photo').forEach(function (photo) {
+    const overlay = photo.querySelector('.about-photo__overlay');
+    if (!overlay) return;
+    photo.addEventListener('mouseleave', function () {
+      overlay.scrollTop = 0;
+    });
+  });
+})();

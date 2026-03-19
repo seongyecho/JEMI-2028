@@ -476,7 +476,7 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(244, 239, 229, 0.88); /* beige-100 88% — 사진이 살짝 비침 */
-  padding: 16px clamp(4px, 1.5vw, 20px); /* 좌우 패딩 반응형 */
+  padding: 10px clamp(4px, 1vw, 14px); /* 좌우 패딩 반응형 */
   box-sizing: border-box;
   overflow-y: auto;                      /* 텍스트 넘치면 스크롤 */
   -ms-overflow-style: none;
@@ -498,9 +498,9 @@ body {
 /* 오버레이 텍스트 — Pretendard Medium, 반응형 16~20px, beige-800 */
 .about-photo__text {
   font-family: var(--font-family-base);
-  font-size: clamp(16px, 1.3vw, 20px); /* 소: 16px, 대: 20px */
+  font-size: clamp(12px, 1vw, 14px);   /* 소: 12px, 대: 14px */
   font-weight: var(--fw-m);             /* 500 */
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--beige-800);
   margin-top: auto;    /* 짧을 땐 위아래 균등 → 중앙 / 길 땐 0으로 수렴 → 상단 */
   margin-bottom: auto;
