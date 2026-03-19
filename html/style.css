@@ -1554,19 +1554,12 @@ body {
 
 /* 모바일: 아이콘만 표시, 텍스트 숨김 */
 @media (max-width: 767px) {
-  .nav {
-    bottom: 24px;
-    left: 16px;
-    right: 16px;
-  }
+  /* nav 위치·크기는 데스크탑과 동일 유지 */
 
   .nav__link {
-    flex-direction: column;
-    justify-content: center;
+    /* 박스 크기·패딩 데스크탑과 동일 유지 */
+    justify-content: center; /* space-between → center (아이콘 하나라 중앙 정렬) */
     align-items: center;
-    height: 56px;
-    padding: 8px 4px;
-    gap: 0;
   }
 
   .nav__link-ko,
