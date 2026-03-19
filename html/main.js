@@ -1149,3 +1149,161 @@ function lerpColor(fromHex, toHex) {
   });
 
 })();
+
+/* =============================================
+   COUNTDOWN — JEMI 2028 카운트다운
+   목표: 2028년 7월 3일 00:00:00 KST (UTC+9)
+   ============================================= */
+(function () {
+  'use strict';
+
+  // 목표 시각 — ISO 8601 timezone offset 포함 (KST = +09:00)
+  const TARGET = new Date('2028-07-03T00:00:00+09:00');
+
+  const elDays    = document.getElementById('cd-days');
+  const elHours   = document.getElementById('cd-hours');
+  const elMinutes = document.getElementById('cd-minutes');
+  const elSeconds = document.getElementById('cd-seconds');
+
+  if (!elDays || !elHours || !elMinutes || !elSeconds) return;
+
+  function pad2(n) { return String(n).padStart(2, '0'); }
+
+  function updateCountdown() {
+    const diff = TARGET - Date.now();
+
+    if (diff <= 0) {
+      // 대회 시작! — 0으로 고정
+      elDays.textContent    = '0';
+      elHours.textContent   = '00';
+      elMinutes.textContent = '00';
+      elSeconds.textContent = '00';
+      return;
+    }
+
+    const totalSec = Math.floor(diff / 1000);
+    const days    = Math.floor(totalSec / 86400);
+    const hours   = Math.floor((totalSec % 86400) / 3600);
+    const minutes = Math.floor((totalSec % 3600) / 60);
+    const seconds = totalSec % 60;
+
+    // DAYS는 패딩 없음 (3자리 가능), 나머지는 2자리 패딩
+    elDays.textContent    = String(days);
+    elHours.textContent   = pad2(hours);
+    elMinutes.textContent = pad2(minutes);
+    elSeconds.textContent = pad2(seconds);
+  }
+
+  // 즉시 실행 후 1초마다 갱신
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+})();
+
+/* =============================================
+   NEWS SCROLLBAR — 스크롤 시에만 표시 + 썸 위치 갱신
+   ============================================= */
+(function () {
+  'use strict';
+
+  const scrollArea = document.querySelector('.news-scroll-area');
+  const barArea    = document.getElementById('newsScrollBar');
+  const barThumb   = document.getElementById('newsScrollThumb');
+
+  if (!scrollArea || !barArea || !barThumb) return;
+
+  let hideTimer;
+
+  function updateThumb() {
+    const { scrollTop, scrollHeight, clientHeight } = scrollArea;
+    const scrollable = scrollHeight - clientHeight;
+    if (scrollable <= 0) return;
+
+    // 트랙 범위 = barArea 높이 - 상하 패딩(16×2) - 썸 높이(80)
+    const paddingV  = 16;
+    const thumbH    = barThumb.offsetHeight;
+    const trackH    = barArea.clientHeight - paddingV * 2;
+    const maxOffset = Math.max(0, trackH - thumbH);
+    const offset    = (scrollTop / scrollable) * maxOffset;
+
+    barThumb.style.transform = `translateY(${offset}px)`;
+  }
+
+  function onScroll() {
+    updateThumb();
+
+    // 표시
+    barArea.classList.add('is-scrolling');
+
+    // 1.2초 뒤 숨김 (스크롤 멈추면)
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+      barArea.classList.remove('is-scrolling');
+    }, 1200);
+  }
+
+  scrollArea.addEventListener('scroll', onScroll, { passive: true });
+
+})();
+
+/* ── 일정 탭 전환 ── */
+(function () {
+  'use strict';
+  const tabs   = document.querySelectorAll('.sched-tab');
+  const panels = document.querySelectorAll('.sched-panel');
+  if (!tabs.length) return;
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      const day = tab.dataset.day;
+
+      tabs.forEach(function (t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+
+      panels.forEach(function (p) { p.classList.remove('is-active'); });
+      const target = document.querySelector('.sched-panel[data-day="' + day + '"]');
+      if (target) target.classList.add('is-active');
+    });
+  });
+})();
+
+/* =============================================
+   ABOUT SCROLLBAR — 스크롤 시에만 표시 + 썸 위치 갱신
+   ============================================= */
+(function () {
+  'use strict';
+
+  const scrollArea = document.querySelector('.about-scroll-area');
+  const barArea    = document.getElementById('aboutScrollBar');
+  const barThumb   = document.getElementById('aboutScrollThumb');
+
+  if (!scrollArea || !barArea || !barThumb) return;
+
+  let hideTimer;
+
+  function updateThumb() {
+    const { scrollTop, scrollHeight, clientHeight } = scrollArea;
+    const scrollable = scrollHeight - clientHeight;
+    if (scrollable <= 0) return;
+
+    const paddingV  = 16;
+    const thumbH    = barThumb.offsetHeight;
+    const trackH    = barArea.clientHeight - paddingV * 2;
+    const maxOffset = Math.max(0, trackH - thumbH);
+    const offset    = (scrollTop / scrollable) * maxOffset;
+
+    barThumb.style.transform = `translateY(${offset}px)`;
+  }
+
+  function onScroll() {
+    updateThumb();
+    barArea.classList.add('is-scrolling');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+      barArea.classList.remove('is-scrolling');
+    }, 1200);
+  }
+
+  scrollArea.addEventListener('scroll', onScroll, { passive: true });
+
+})();
