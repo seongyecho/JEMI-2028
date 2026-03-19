@@ -456,6 +456,12 @@ body {
   min-height: 0;          /* 고정 200px 제거 → flex stretch로 높이 결정 */
   overflow: hidden;
   position: relative;
+  transition: flex-grow 0.4s ease;
+}
+
+/* 호버 시 1/2 확장, 나머지 축소 */
+.about-photos:hover .about-photo:hover {
+  flex-grow: 2;
 }
 
 .about-photo__img {
@@ -463,6 +469,7 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: filter 0.3s ease;
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
@@ -476,7 +483,7 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(244, 239, 229, 0.88); /* beige-100 88% — 사진이 살짝 비침 */
-  padding: 10px clamp(4px, 1vw, 14px); /* 좌우 패딩 반응형 */
+  padding: clamp(10px, 1.5vw, 16px) clamp(4px, 1.5vw, 20px); /* 상하/좌우 패딩 반응형 */
   box-sizing: border-box;
   overflow-y: auto;                      /* 텍스트 넘치면 스크롤 */
   -ms-overflow-style: none;
@@ -495,12 +502,17 @@ body {
   opacity: 1;
 }
 
+/* 다른 사진 호버 시 비호버 사진에 블러 */
+.about-photos:hover .about-photo:not(:hover) .about-photo__img {
+  filter: blur(8px);
+}
+
 /* 오버레이 텍스트 — Pretendard Medium, 반응형 16~20px, beige-800 */
 .about-photo__text {
   font-family: var(--font-family-base);
-  font-size: clamp(12px, 1vw, 14px);   /* 소: 12px, 대: 14px */
+  font-size: clamp(13px, 1.3vw, 20px); /* 소: 13px, 대: 20px */
   font-weight: var(--fw-m);             /* 500 */
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--beige-800);
   margin-top: auto;    /* 짧을 땐 위아래 균등 → 중앙 / 길 땐 0으로 수렴 → 상단 */
   margin-bottom: auto;
