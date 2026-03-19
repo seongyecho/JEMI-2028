@@ -1554,6 +1554,13 @@ body {
 
 /* 모바일: 아이콘만 표시, 텍스트 숨김 */
 @media (max-width: 767px) {
+  /* 카드 — hero__border inset(30px)과 맞춤, 선 안쪽 full width */
+  .hero__card {
+    left: 30px;
+    right: 30px;
+    width: auto;
+  }
+
   /* nav 위치·크기는 데스크탑과 동일 유지 */
 
   .nav__link {
