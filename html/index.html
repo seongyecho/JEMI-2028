@@ -120,9 +120,121 @@
     <!-- ⑥ 메인 카드 — landing page-6 등장, 6컬럼 중앙 -->
     <!-- 탭 패널: nav 클릭 시 교체, 기본값 = JEMI 소개(about) -->
     <div class="hero__card" id="heroCard">
-      <div class="hero__card-panel is-active" data-panel="about"></div>
-      <div class="hero__card-panel" data-panel="schedule"></div>
-      <div class="hero__card-panel" data-panel="preregister"></div>
+      <div class="hero__card-panel is-active" data-panel="about">
+        <!-- 스크롤 가능 콘텐츠 영역 -->
+        <div class="about-scroll-area">
+          <div class="about-contents">
+            <!-- 포토 스트립 — 세 사진 가로 배치, gap 4px, 호버 시 텍스트 오버레이 -->
+            <div class="about-photos">
+              <div class="about-photo about-photo--left">
+                <img src="assets/01 유채꽃.webp" alt="유채꽃" class="about-photo__img" draggable="false">
+                <div class="about-photo__overlay">
+                  <p class="about-photo__text">오래전부터 준비된 이야기가 있어요.<br><br>세계 각지에서 자신의 자리를 묵묵히 지켜온 우리가<br>2028년 여름, 제주라는 한 곳에 모여<br>함께 그 이야기의 다음 페이지를 씁니다.<br><br>이건 우리의 이야기이기도 하지만,<br>하나님이 오래전부터 써오신 이야기이기도 해요.</p>
+                </div>
+              </div>
+              <div class="about-photo about-photo--mid">
+                <img src="assets/about-misty.webp" alt="안개길" class="about-photo__img" draggable="false">
+                <div class="about-photo__overlay">
+                  <p class="about-photo__text">제주에도 깊은 아픔의 시간이 있었어요.<br>1948년 4·3의 비극 속에서<br>온 섬이 무너지는 듯한 슬픔을 지나야 했습니다.<br><br>하지만 제주만이 아니에요.<br>우리가 살아온 땅마다,<br>지워지지 않는 아픔의 흔적이 있습니다.<br><br>서로의 상처를 알기에 함께 울 수 있고,<br>함께이기에 다시 일어설 수 있어요.</p>
+                </div>
+              </div>
+              <div class="about-photo about-photo--right">
+                <img src="assets/03 야쟈수.webp" alt="야자수" class="about-photo__img" draggable="false">
+                <div class="about-photo__overlay">
+                  <p class="about-photo__text">당신에게 이 여름을 초대합니다.<br><br>멀리서 왔든, 가까이서 왔든,<br>제주에서 만나는 순간 우리는 이미 친구예요.<br><br>이 여름이 당신의 삶에서<br>특별한 챕터가 되길 바랍니다.<br>2028년 제주에서 기다릴게요.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 스크롤바 — 스크롤 시에만 표시 -->
+        <div class="card-scroll-bar-area" id="aboutScrollBar">
+          <div class="card-scroll-bar" id="aboutScrollThumb"></div>
+        </div>
+      </div>
+      <div class="hero__card-panel" data-panel="schedule">
+        <!-- 탭 행 — Day1~5, 피그마 455:424 -->
+        <div class="sched-tabs">
+          <button class="sched-tab is-active" data-day="1">Day1</button>
+          <button class="sched-tab" data-day="2">Day2</button>
+          <button class="sched-tab" data-day="3">Day3</button>
+          <button class="sched-tab" data-day="4">Day4</button>
+          <button class="sched-tab" data-day="5">Day5</button>
+        </div>
+        <!-- 컨텐츠 영역 -->
+        <div class="sched-body-wrap">
+          <div class="sched-panel is-active" data-day="1">
+            <p class="sched-title">일정 제목</p>
+            <div class="sched-content">
+              <p>일정 내용입니다. 텍스트 및 이미지를 첨부할 수 있습니다.</p>
+              <p>정해진 일정이 없는 경우, 이 탭은 숨겨둘 수 있습니다.</p>
+            </div>
+          </div>
+          <div class="sched-panel" data-day="2">
+            <p class="sched-title">일정 제목</p>
+            <div class="sched-content">
+              <p>Day2 일정 내용입니다.</p>
+            </div>
+          </div>
+          <div class="sched-panel" data-day="3">
+            <p class="sched-title">일정 제목</p>
+            <div class="sched-content">
+              <p>Day3 일정 내용입니다.</p>
+            </div>
+          </div>
+          <div class="sched-panel" data-day="4">
+            <p class="sched-title">일정 제목</p>
+            <div class="sched-content">
+              <p>Day4 일정 내용입니다.</p>
+            </div>
+          </div>
+          <div class="sched-panel" data-day="5">
+            <p class="sched-title">일정 제목</p>
+            <div class="sched-content">
+              <p>Day5 일정 내용입니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__card-panel" data-panel="preregister">
+        <!-- 제목 — 상단 고정, pt-32 -->
+        <div class="prereg-title-wrap">
+          <p class="prereg-title">JEMI 2028 Countdown</p>
+        </div>
+        <!-- 카운트다운 박스 영역 (flex-1) -->
+        <div class="prereg-countdown-wrap">
+          <div class="prereg-boxes">
+            <div class="prereg-box">
+              <div class="prereg-box__inner">
+                <p class="prereg-num" id="cd-days">730</p>
+                <p class="prereg-label">DAYS</p>
+              </div>
+            </div>
+            <div class="prereg-box">
+              <div class="prereg-box__inner">
+                <p class="prereg-num" id="cd-hours">00</p>
+                <p class="prereg-label">HOURS</p>
+              </div>
+            </div>
+            <div class="prereg-box">
+              <div class="prereg-box__inner">
+                <p class="prereg-num" id="cd-minutes">00</p>
+                <p class="prereg-label">MINUTES</p>
+              </div>
+            </div>
+            <div class="prereg-box">
+              <div class="prereg-box__inner">
+                <p class="prereg-num" id="cd-seconds">00</p>
+                <p class="prereg-label">SECONDS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 버튼 영역 (shrink-0, pb-32) -->
+        <div class="prereg-btn-area">
+          <a href="#" class="prereg-btn">사전 등록하기</a>
+        </div>
+      </div>
       <div class="hero__card-panel" data-panel="location">
         <!-- 태그 -->
         <div class="loc-tag-row">
@@ -139,10 +251,64 @@
           </div>
         </div>
         <!-- 텍스트 -->
-        <p class="loc-title">새별오름</p>
-        <p class="loc-subtitle">Saebyeol Oreum, Jeju</p>
+        <div class="loc-text-group">
+          <p class="loc-title">새별오름</p>
+          <p class="loc-subtitle">Saebyeol Oreum, Jeju</p>
+        </div>
       </div>
-      <div class="hero__card-panel" data-panel="news"></div>
+      <div class="hero__card-panel" data-panel="news">
+        <!-- 스크롤 가능 콘텐츠 영역 -->
+        <div class="news-scroll-area">
+          <div class="news-contents">
+            <!-- 제목 섹션 -->
+            <div class="news-title">
+              <p class="news-headline">"제주선교 120주년 기념대회···제주가 치유의 땅, 세계선교 요충지 선포"</p>
+              <div class="news-info">
+                <span class="news-source">제주기독신문</span>
+                <span class="news-info-dot">·</span>
+                <span class="news-date">2026-02-13</span>
+              </div>
+            </div>
+            <!-- 본문 -->
+            <div class="news-body">
+              <p>"제주선교 120주년 기념대회···제주가 치유의 땅, 세계선교 요충지 선포"
+'2028 세계선교대회' 2028년 7월 3~7일 3만명 대회로 진행
+제주성시화운동-한국CCC 실무자, 지난 6일 전략회의 개최
+
+'2028 세계선교대회'의 제주 개최를 추진하고 있는 제주성시화운동과 한국CCC 실무자 전략회의가 지난 6일 제주성안교회에서 개최됐다.
+
+양측은 이날 회의에서 대회 개최 시기를 잠정 2028년 7월 3~7일로 예정하고, 이번 선교대회뿐 아니라 이후에도 사용가능한 일명 'JEMI(JEJU MISSION) 2028'이란 명칭의 제주 기독교 포털을 구축하기로 했다. 이는 기존 홈페이지 방식이 아닌 AI 기반으로 자연어 질문에 바로 답변과 자료를 도출하는 시스템으로, 선교대회에 필요한 각종 자료는 물론, 제주 기독교 역사와 유적지, 제주도 각 교회 위치와 간략한 정보, 제주에 있는 여러 기독교 업체 소개 등이 들어간다.
+
+또한 선교대회 로고를 제작하고, 준비위원회도 구성해 수시로 만나 협의하는 한편 세계선교대회 장소 선정, 재정 모금, 영친을 맺기 위한 제주 발대식 준비도 합의했다.
+
+한편 제주선교 120주년과 한국CCC 창립70주년을 기념해 추진되고 있는 '2028 세계선교대회'는 국내는 물론 아시아, 아프리카, 라틴 아메리카 등에서 청년 1만~1만 5천 명이 참석할 것으로 예상되며, 제주의 성도들까지 합치면 총 3만 명 이상이 참가하는 대규모 선교대회가 될 것으로 기대되고 있다.
+
+양측은 "이 대회를 통해 제주가 세계선교의 요충지며, 아픔과 상처를 이겨내고 치유와 회복, 생명을 살리는 땅임을 천명하게 될 것이다. 이 대회를 계기로 제주도가 두 자리 복음화율로 도약하게 되길 기대하며, 대규모 유입으로 관광에도 크게 기여할 것으로 기대한다"며 제주 교계의 관심과 적극적인 협력을 당부했다.
+
+&lt;양동식 기자&gt;</p>
+            </div>
+          </div>
+        </div>
+        <!-- 스크롤바 — 뉴스 패널 내부 우측 고정, 스크롤 시에만 표시 -->
+        <div class="card-scroll-bar-area" id="newsScrollBar">
+          <div class="card-scroll-bar" id="newsScrollThumb"></div>
+        </div>
+        <!-- 네비게이션 버튼 영역 — 카드 우측 하단 고정, 피그마 829:1172 -->
+        <div class="news-btn-area">
+          <button class="btn-slider btn-slider--prev" id="newsPrev" aria-label="이전 기사" disabled>
+            <span class="btn-slider__icon" aria-hidden="true">
+              <img src="assets/arrow-normal.svg" class="btn-slider__polygon" draggable="false">
+              <img src="assets/arrow-disabled.svg" class="btn-slider__polygon btn-slider__polygon--dim" draggable="false">
+            </span>
+          </button>
+          <button class="btn-slider btn-slider--next" id="newsNext" aria-label="다음 기사">
+            <span class="btn-slider__icon" aria-hidden="true">
+              <img src="assets/arrow-normal.svg" class="btn-slider__polygon" draggable="false">
+              <img src="assets/arrow-disabled.svg" class="btn-slider__polygon btn-slider__polygon--dim" draggable="false">
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
 
   </section>

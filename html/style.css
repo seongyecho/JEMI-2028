@@ -339,24 +339,208 @@ body {
   display: block;
 }
 
-/* ── Location 탭 패널 ── */
-.hero__card-panel[data-panel="location"] {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+/* ── About 탭 패널 ── */
+.hero__card-panel[data-panel="about"].is-active {
+  display: block;
   overflow: hidden;
+  position: relative;
 }
 
+/* 스크롤 가능 영역 — native scrollbar 숨김, flex column으로 높이 chain 연결 */
+.about-scroll-area {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* 내부 콘텐츠 — flex:1 로 scroll-area를 꽉 채움 */
+.about-contents {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  min-height: 0;
+}
+
+/* 로고 영역 — pt-32, items-center, justify-center */
+.about-logo-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 32px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+/* 로고 이미지 — 피그마 실측 232.466×160px */
+.about-logo {
+  width: 232px;
+  height: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+/* 각 행 — flex row, gap-20, px-32 */
+.about-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 32px;
+  padding-right: 32px;
+  box-sizing: border-box;
+}
+
+/* Row 1: pt-32 pb-20 */
+.about-row--first {
+  padding-top: 32px;
+  padding-bottom: 20px;
+}
+
+/* Row 2: pt-20 pb-16 */
+.about-row--mid {
+  padding-top: 20px;
+  padding-bottom: 16px;
+}
+
+/* Row 3: pt-20 pb-32 */
+.about-row--last {
+  padding-top: 20px;
+  padding-bottom: 32px;
+}
+
+/* 이미지 — 카드 너비의 30%, 최소 100px, 높이 200px, object-cover */
+.about-img {
+  width: 30%;
+  min-width: 100px;
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+.about-img--r20 { border-radius: 20px; }
+.about-img--r32 { border-radius: 20px; }
+
+/* 텍스트 — Pretendard Medium 20px, beige-800, lh-1.5, pre-wrap */
+.about-text {
+  flex: 1;
+  font-family: var(--font-family-base);
+  font-size: var(--type-h5-size); /* 20px */
+  font-weight: var(--fw-m);       /* 500 */
+  line-height: 1.5;
+  color: var(--beige-800);        /* #54422d */
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* ── About 포토 스트립 — 피그마 887:2352 ── */
+.about-photos {
+  display: flex;
+  gap: 4px;
+  padding: 32px;          /* 상단 32px로 로고와 간격 확보 */
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1 0 0;            /* 로고 아래 남은 공간 모두 채움 */
+  min-height: 0;
+}
+
+.about-photo {
+  flex: 1 0 0;
+  min-height: 0;          /* 고정 200px 제거 → flex stretch로 높이 결정 */
+  overflow: hidden;
+  position: relative;
+}
+
+.about-photo__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* 호버 오버레이 — 사진 위를 덮는 beige-100 패널 */
+.about-photo__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(244, 239, 229, 0.88); /* beige-100 88% — 사진이 살짝 비침 */
+  padding: 16px clamp(4px, 1.5vw, 20px); /* 좌우 패딩 반응형 */
+  box-sizing: border-box;
+  overflow-y: auto;                      /* 텍스트 넘치면 스크롤 */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: flex;
+  align-items: flex-start;              /* 상단 정렬 */
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.about-photo__overlay::-webkit-scrollbar {
+  display: none;
+}
+
+.about-photo:hover .about-photo__overlay {
+  opacity: 1;
+}
+
+/* 오버레이 텍스트 — Pretendard Medium, 반응형 16~20px, beige-800 */
+.about-photo__text {
+  font-family: var(--font-family-base);
+  font-size: clamp(16px, 1.3vw, 20px); /* 소: 16px, 대: 20px */
+  font-weight: var(--fw-m);             /* 500 */
+  line-height: 1.5;
+  color: var(--beige-800);
+  margin-top: auto;    /* 짧을 땐 위아래 균등 → 중앙 / 길 땐 0으로 수렴 → 상단 */
+  margin-bottom: auto;
+}
+
+/* 양 끝 모서리만 radius 20px (가로 배치 기준) */
+.about-photo--left  { border-radius: 10px 0 0 10px; }
+.about-photo--right { border-radius: 0 10px 10px 0; }
+
+/* ── About 소형 화면 — 세로 배치 (max-width: 768px) ── */
+@media (max-width: 768px) {
+  .about-photos {
+    flex-direction: column;
+    padding: clamp(16px, 4vw, 32px);
+  }
+
+  /* 세로 배치 기준 radius — 위/아래 끝만 */
+  .about-photo--left  { border-radius: 10px 10px 0 0; }
+  .about-photo--mid   { border-radius: 0; }
+  .about-photo--right { border-radius: 0 0 10px 10px; }
+}
+
+/* ── Location 탭 패널 ── */
+/* display: none은 base .hero__card-panel에서 처리 — 여기서는 active 상태만 정의 */
 .hero__card-panel[data-panel="location"].is-active {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  padding-top: 52px;
+  box-sizing: border-box;
 }
 
 .loc-tag-row {
-  width: 100%;
-  padding: 20px 20px 0;
-  box-sizing: border-box;
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
 
 .card-tag {
@@ -384,10 +568,9 @@ body {
 
 .loc-map {
   position: relative;
-  width: 320px;
-  height: 209px;
+  width: clamp(220px, 60%, 580px);
+  aspect-ratio: 320 / 209;
   flex-shrink: 0;
-  margin-top: 4px;
 }
 
 .loc-map__img {
@@ -399,8 +582,8 @@ body {
 
 .loc-map__marker {
   position: absolute;
-  left: 69px;
-  top: 88px;
+  left: 21.56%;
+  top: 32.5%; /* 피그마: 68/209 (pt-20 제외) */
   width: 24px;
   height: 24px;
   border-radius: 9999px;
@@ -419,6 +602,14 @@ body {
   display: block;
 }
 
+/* 장소 텍스트 그룹 — 새별오름 + 영문, gap 0px */
+.loc-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
 .loc-title {
   margin: 0;
   font-size: 24px;
@@ -429,12 +620,431 @@ body {
 }
 
 .loc-subtitle {
-  margin: 2px 0 0;
+  margin: 0;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
   color: #b29367;
   white-space: nowrap;
+}
+
+/* ── News 탭 패널 — 피그마 829:1128 ── */
+/* display: none은 base .hero__card-panel에서 처리 — 여기서는 active 상태만 정의 */
+.hero__card-panel[data-panel="news"].is-active {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── 일정 탭 패널 — 피그마 455:424 ── */
+.hero__card-panel[data-panel="schedule"].is-active {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 탭 행 — pt-20 px-24 (피그마 455:424) */
+.sched-tabs {
+  display: flex;
+  flex-shrink: 0;
+  padding: 20px 24px 0 24px;
+}
+
+/* 탭 버튼 — Cormorant Medium 18px */
+.sched-tab {
+  font-family: var(--font-family-display);
+  font-size: var(--type-subtitle-size); /* 18px */
+  font-weight: var(--fw-m);
+  line-height: 1.5;
+  color: var(--beige-300);
+  padding: 4px 10px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+/* active 탭 — beige-600 + 하단 border beige-200 */
+.sched-tab.is-active {
+  color: var(--beige-600);
+  border-bottom-color: var(--beige-200);
+}
+
+/* hover 탭 — beige-400 텍스트만 */
+.sched-tab:hover:not(.is-active) {
+  color: var(--beige-400);
+}
+
+/* 컨텐츠 래퍼 — flex-1 */
+.sched-body-wrap {
+  flex: 1 0 0;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 각 day 패널 — 기본 숨김 */
+.sched-panel {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  padding: 32px 40px 32px 40px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sched-panel::-webkit-scrollbar { display: none; }
+
+.sched-panel.is-active {
+  display: flex;
+}
+
+/* 일정 제목 — Pretendard Medium 18px, beige-700 */
+.sched-title {
+  font-family: var(--font-family-base);
+  font-size: var(--type-subtitle-size);
+  font-weight: var(--fw-m);
+  line-height: 1.5;
+  color: var(--beige-700);
+  margin: 0 0 12px 0;
+  flex-shrink: 0;
+}
+
+/* 일정 본문 — Pretendard Regular 16px, beige-600, lh-1.6 */
+.sched-content {
+  font-family: var(--font-family-base);
+  font-size: var(--type-body1-size);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--beige-600);
+}
+
+.sched-content p {
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ── 사전 알림 신청 탭 패널 — 피그마 455:426 ── */
+.hero__card-panel[data-panel="preregister"].is-active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 제목 래퍼 — shrink-0, pt-32 */
+.prereg-title-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--space-32);
+  width: 100%;
+}
+
+/* 카운트다운 박스 영역 — flex-1, py-8 */
+.prereg-countdown-wrap {
+  flex: 1 0 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) 0;
+  width: 100%;
+}
+
+/* 제목 — Pretendard Medium 18px, beige-500 */
+.prereg-title {
+  font-family: var(--font-family-base);
+  font-size: var(--type-subtitle-size); /* 18px */
+  font-weight: var(--fw-m);             /* 500 */
+  line-height: 1.5;
+  color: var(--beige-500);
+  text-align: center;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* 숫자 박스 행 */
+.prereg-boxes {
+  display: flex;
+  gap: clamp(12px, 1.5vw, 20px);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* 개별 박스 — border beige-100, rounded-8, 반응형 width */
+.prereg-box {
+  border: 1px solid var(--beige-100);
+  border-radius: var(--radius-8);
+  width: clamp(72px, 9vw, 130px);
+  padding-bottom: clamp(12px, 1.5vw, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 박스 내부 — flex-col, gap-12, items-center */
+.prereg-box__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.2vw, 16px);
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* 숫자 — Cormorant Regular, 반응형 display, beige-500, tracking -1.2px */
+.prereg-num {
+  font-family: var(--font-family-display);
+  font-size: clamp(42px, 5.5vw, 80px);
+  font-weight: var(--fw-r);
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+  color: var(--beige-500);
+  margin: 0;
+  text-align: center;
+  min-width: 1ch;
+}
+
+/* 라벨 — Pretendard Regular, body2(14px), beige-500 */
+.prereg-label {
+  font-family: var(--font-family-base);
+  font-size: var(--type-body2-size); /* 14px */
+  font-weight: var(--fw-r);
+  line-height: 1.5;
+  color: var(--beige-500);
+  text-align: center;
+  margin: 0;
+}
+
+/* 버튼 영역 — shrink-0, pb-32, items-center */
+.prereg-btn-area {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: var(--space-32);
+}
+
+/* 사전 등록하기 버튼 — bg beige-500, rounded-8, px-20 py-12 */
+.prereg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--beige-500);
+  border-radius: var(--radius-8);
+  padding: var(--space-12) var(--space-20);
+  font-family: var(--font-family-base);
+  font-size: var(--type-body2-size); /* 14px */
+  font-weight: var(--fw-s);          /* 600 */
+  line-height: 1.6;
+  color: var(--beige-50);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 200ms ease-out;
+}
+
+.prereg-btn:hover {
+  background: var(--beige-600);
+}
+
+/* 스크롤 가능 콘텐츠 영역 — native scrollbar 숨김 */
+.news-scroll-area {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.news-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* 내부 콘텐츠 래퍼 — px-32 */
+.news-contents {
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 제목 섹션 — py-28, gap-4 */
+.news-title {
+  padding: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 헤드라인 — SemiBold 18px, #94774f, lineHeight 1.5 */
+.news-headline {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #94774f;
+  margin: 0;
+}
+
+/* 출처·날짜 행 — Regular 13px, #b29367, gap-8, nowrap */
+.news-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.news-source,
+.news-date {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #b29367;
+  letter-spacing: 0.13px;
+  margin: 0;
+}
+
+.news-info-dot {
+  font-size: 13px;
+  color: #b29367;
+  letter-spacing: 0;
+}
+
+/* 본문 영역 — Medium 16px, #54422d, pre-wrap */
+.news-body {
+  padding-bottom: 28px;
+}
+
+.news-body p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #54422d;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* ── 뉴스 네비게이션 버튼 영역 — 피그마 829:1172, 우측 하단 고정 ── */
+.news-btn-area {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 16px;
+}
+
+/* 슬라이더 버튼 — 32px 원형, beige-100 배경 */
+.btn-slider {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background-color: var(--beige-100, #f4efe5);
+  background-image: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  transition: background-image 0.15s ease;
+}
+
+/* hover: beige-500 10% 오버레이 */
+.btn-slider:hover:not(:disabled) {
+  background-image: linear-gradient(
+    rgba(178, 147, 103, 0.1),
+    rgba(178, 147, 103, 0.1)
+  );
+}
+
+/* pressed: beige-500 20% 오버레이 */
+.btn-slider:active:not(:disabled) {
+  background-image: linear-gradient(
+    rgba(178, 147, 103, 0.2),
+    rgba(178, 147, 103, 0.2)
+  );
+}
+
+.btn-slider:disabled {
+  cursor: default;
+}
+
+/* 아이콘 래퍼 — 피그마 기준 14×14px */
+.btn-slider__icon {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* 폴리곤 이미지 — 피그마 위치: top 7.14%, bottom 25%, left/right 11.92% */
+.btn-slider__polygon {
+  position: absolute;
+  top: 7.14%;
+  left: 11.92%;
+  width: 76.16%;   /* 100% - 2×11.92% */
+  height: 67.86%;  /* 100% - 7.14% - 25% */
+  display: block;
+}
+
+/* disabled 시 연한 화살표, 기본은 숨김 */
+.btn-slider__polygon--dim               { display: none; }
+.btn-slider:disabled .btn-slider__polygon:not(.btn-slider__polygon--dim) { display: none; }
+.btn-slider:disabled .btn-slider__polygon--dim { display: block; }
+
+/* prev: ▲ → rotate(-90deg) → ◀ */
+.btn-slider--prev .btn-slider__icon {
+  transform: rotate(-90deg);
+}
+
+/* next: ▲ → rotate(-90deg) scaleY(-1) → ▶  (피그마 동일 로직) */
+.btn-slider--next .btn-slider__icon {
+  transform: rotate(-90deg) scaleY(-1);
+}
+
+/* ── 카드 스크롤바 영역 — 피그마 829:1169
+   뉴스 패널 내부 position:absolute (뉴스 패널이 position:relative)
+   기본 숨김(opacity:0) → 스크롤 시 is-scrolling 클래스로 등장 ── */
+.card-scroll-bar-area {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: 16px 8px;
+  box-sizing: border-box;
+  pointer-events: none;
+  /* 기본: 숨김 */
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.card-scroll-bar-area.is-scrolling {
+  opacity: 1;
+}
+
+.card-scroll-bar {
+  width: 6px;
+  height: 80px;
+  background: #d9c8ac;
+  border-radius: 4px;
+  flex-shrink: 0;
+  /* 스크롤 위치에 따라 JS가 translateY로 이동 */
+  will-change: transform;
 }
 
 /* 둥근 테두리 — 30px inset, r=28px, stroke: beige-50, 초기: 투명 */
@@ -724,7 +1334,7 @@ body {
   transform: translateX(-50%) translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   z-index: 100;
 }
 .chatbot-wrap.is-active {
@@ -770,8 +1380,8 @@ body {
 /* 챗봇 버튼 */
 .chatbot__btn {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   background: #FBF9F4;
   border-radius: 9999px;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.12);
