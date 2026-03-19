@@ -459,8 +459,9 @@ body {
   transition: flex-grow 0.4s ease;
 }
 
-/* 호버 시 1/2 확장, 나머지 축소 */
-.about-photos:hover .about-photo:hover {
+/* 호버 또는 active 사진 확장 */
+.about-photos:hover .about-photo:hover,
+.about-photo.is-active {
   flex-grow: 2;
 }
 
@@ -500,12 +501,14 @@ body {
   display: none;
 }
 
-.about-photo:hover .about-photo__overlay {
+.about-photo:hover .about-photo__overlay,
+.about-photo.is-active .about-photo__overlay {
   opacity: 1;
 }
 
-/* 호버한 사진에 블러 */
-.about-photos:hover .about-photo:hover .about-photo__img {
+/* 호버/active 사진에 블러 */
+.about-photos:hover .about-photo:hover .about-photo__img,
+.about-photo.is-active .about-photo__img {
   filter: blur(8px);
 }
 

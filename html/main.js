@@ -1309,15 +1309,36 @@ function lerpColor(fromHex, toHex) {
 })();
 
 /* =============================================
-   ABOUT 사진 오버레이 — 호버 이탈 시 스크롤 초기화
+   ABOUT 사진 — 항상 하나가 active 상태 유지
+   기본: 첫 번째 사진 / 이후: 마지막으로 호버한 사진
    ============================================= */
 (function () {
   'use strict';
-  document.querySelectorAll('.about-photo').forEach(function (photo) {
-    const overlay = photo.querySelector('.about-photo__overlay');
-    if (!overlay) return;
-    photo.addEventListener('mouseleave', function () {
-      overlay.scrollTop = 0;
+  const photos = Array.from(document.querySelectorAll('.about-photo'));
+  if (!photos.length) return;
+
+  function setActive(target) {
+    photos.forEach(function (p) { p.classList.remove('is-active'); });
+    target.classList.add('is-active');
+  }
+
+  // 기본값: 맨 왼쪽(첫 번째) 사진
+  setActive(photos[0]);
+
+  photos.forEach(function (photo) {
+    // mouseenter: 호버한 사진으로 active 이동
+    photo.addEventListener('mouseenter', function () {
+      setActive(photo);
     });
+
+    // mouseleave: 오버레이 스크롤 초기화 (비활성화된 사진 한정)
+    const overlay = photo.querySelector('.about-photo__overlay');
+    if (overlay) {
+      photo.addEventListener('mouseleave', function () {
+        if (!photo.classList.contains('is-active')) {
+          overlay.scrollTop = 0;
+        }
+      });
+    }
   });
 })();
