@@ -1623,10 +1623,11 @@ body {
   }
 
   /* 챗봇 — 모바일: nav 위 우측 하단 고정
-     nav: bottom 42px + height 66px + gap 16px = 124px */
+     nav: bottom 42px + height 66px + gap 16px = 124px
+     right: 40px → nav·카드 우측 끝단과 정렬 */
   .chatbot-wrap {
     left: auto;
-    right: 16px;
+    right: 40px;
     top: auto;
     bottom: 124px;
     transform: none;
