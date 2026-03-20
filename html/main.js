@@ -872,8 +872,9 @@ function lerpColor(fromHex, toHex) {
                                     });
 
                                     // ── 카드 + 챗봇 fade-in: Phase 2(로고 이동)와 동시 시작
-                                    const heroCard    = document.getElementById('heroCard');
-                                    const chatbotWrap = document.getElementById('chatbotWrap');
+                                    const heroCard      = document.getElementById('heroCard');
+                                    const chatbotWrap   = document.getElementById('chatbotWrap');
+                                    const mobileLogoBar = document.getElementById('mobileLogoBar');
                                     if (heroCard) {
                                       springAnimate({
                                         from: 0, to: 1, stiffness: 80, damping: 100, mass: 3, duration: 600,
@@ -889,6 +890,13 @@ function lerpColor(fromHex, toHex) {
                                         from: 0, to: 1, stiffness: 80, damping: 100, mass: 3, duration: 600,
                                         onUpdate:   cv => { chatbotWrap.style.opacity = String(Math.max(0, Math.min(1, cv))); },
                                         onComplete: () => { chatbotWrap.style.opacity = ''; chatbotWrap.classList.add('is-active'); },
+                                      });
+                                    }
+                                    if (mobileLogoBar) {
+                                      springAnimate({
+                                        from: 0, to: 1, stiffness: 80, damping: 100, mass: 3, duration: 600,
+                                        onUpdate:   cv => { mobileLogoBar.style.opacity = String(Math.max(0, Math.min(1, cv))); },
+                                        onComplete: () => { mobileLogoBar.style.opacity = ''; mobileLogoBar.classList.add('is-active'); },
                                       });
                                     }
                                   },

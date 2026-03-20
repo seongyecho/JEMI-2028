@@ -1358,6 +1358,15 @@ body {
 
 
 /* =============================================
+   MOBILE LOGO BAR — 모바일 전용, 상단 고정
+   ============================================= */
+
+/* 기본(데스크탑): 숨김 */
+.hero__mobile-logo {
+  display: none;
+}
+
+/* =============================================
    CHATBOT — 우측 고정, 세로 중앙
    ============================================= */
 
@@ -1588,6 +1597,28 @@ body {
   }
 
   .nav__link-icon {
+    display: block;
+  }
+
+  /* 모바일 로고 바 — 상단 중앙 고정 */
+  .hero__mobile-logo {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;          /* JS springAnimate로 등장 */
+    pointer-events: none;
+  }
+  .hero__mobile-logo.is-active {
+    opacity: 1;
+  }
+  .hero__mobile-logo img {
+    height: 28px;
     display: block;
   }
 
